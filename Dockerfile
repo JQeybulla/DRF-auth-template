@@ -22,6 +22,7 @@ RUN sed -i 's/\r$//g' /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 RUN apt-get update -y
 RUN apt-get install -y netcat
+RUN mkdir /usr/src/app/staticfiles
 # copy project
 COPY . .
 
