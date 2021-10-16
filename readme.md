@@ -13,7 +13,7 @@ Then run the migrations:
 docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
 ```
 
-Lastly for static files run collectstatic comand:
+Lastly for static files run collectstatic command:
 ```
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
