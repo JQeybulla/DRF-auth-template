@@ -14,6 +14,7 @@ services:
       - ./.env.prod
     depends_on:
       - db
+      - redis
   db:
     image: postgres:13.0-alpine
     volumes:
@@ -28,6 +29,17 @@ services:
       - 1337:80
     depends_on:
       - web
+  celery:
+    build: .
+    command: celery worker --app=project --loglevel=info
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - web
+      - redis
+
+  redis:
+    image: redis:6-alpine
 
 
 volumes:
