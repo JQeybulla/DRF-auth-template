@@ -31,9 +31,11 @@ services:
       - web
   celery:
     build: .
-    command: celery worker --app=project --loglevel=info
+    command: celery --app=project worker --loglevel=info
     volumes:
       - .:/usr/src/app
+    env_file:
+      - ./.env.prod
     depends_on:
       - web
       - redis
