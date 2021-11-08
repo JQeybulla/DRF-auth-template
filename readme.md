@@ -18,7 +18,10 @@ Lastly for static files run collectstatic command:
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
 
-
+To stop runnning containers:
+```
+docker-compose -f docker-compose.prod.yml down -v
+```
 
 ## To run with virtual environment:
 First, a virtual environment must be created and activated:
