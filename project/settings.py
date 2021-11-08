@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+from celery.schedules import crontab
+import project.tasks
+from datetime import timedelta
+
 PROD = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -202,3 +206,11 @@ AUTHENTICATION_BACKENDS = [
 # CELERY
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+
+# schedule for celery beat
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {
+        "task": "project.tasks.sample_task",
+        "schedule": timedelta(seconds=30),
+    },
+}
